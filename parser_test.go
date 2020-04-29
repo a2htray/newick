@@ -16,3 +16,10 @@ func TestParse(t *testing.T) {
 	}
 	fmt.Println(string(output))
 }
+
+func TestNode_JSON(t *testing.T) {
+	s := "(A,B,((C,Y)c,D)e)f;"
+	tree := Parse(s)
+
+	fmt.Println((*tree).JSON())
+}

@@ -1,16 +1,11 @@
 package newick
 
 import (
+	"encoding/json"
 	"fmt"
 	"regexp"
 	"strconv"
 )
-
-const (
-	JSON = "json"
-)
-
-type tree *node
 
 type node struct {
 	Name      string  `json:"name"`
@@ -18,7 +13,15 @@ type node struct {
 	BranchSet []*node `json:"branchset"`
 }
 
-func Parse(s string) tree {
+func (n node) JSON() string {
+	content, err := json.Marshal(n)
+	if err != nil {
+		panic(err)
+	}
+	return string(content)
+}
+
+func Parse(s string) *node {
 	ancestors := make([]*node, 0)
 	t := &node{}
 
