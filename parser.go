@@ -54,7 +54,6 @@ func Parse(s string) *node {
 				t.Name = token
 			} else if x == ":" {
 				f, _ := strconv.ParseFloat(token, 64)
-				fmt.Println("float: ", token)
 				t.Length = f
 			}
 		}
