@@ -23,3 +23,10 @@ func TestNode_JSON(t *testing.T) {
 
 	fmt.Println((*tree).JSON())
 }
+
+func TestNode_Depth(t *testing.T) {
+	s := "(A,B,((C,Y)c,D)e)f;"
+	tree := Parse(s)
+
+	fmt.Println(tree.Depth())
+}

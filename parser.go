@@ -2,7 +2,7 @@ package newick
 
 import (
 	"encoding/json"
-	"fmt"
+	"math"
 	"regexp"
 	"strconv"
 )
@@ -19,6 +19,19 @@ func (n node) JSON() string {
 		panic(err)
 	}
 	return string(content)
+}
+
+func (n *node) Depth() int {
+	if n == nil {
+		return 0
+	}
+
+	h := 0
+	for _, node := range n.BranchSet {
+		h = int(math.Max(float64(h), float64(node.Depth())))
+	}
+	h += 1
+	return h
 }
 
 func Parse(s string) *node {
